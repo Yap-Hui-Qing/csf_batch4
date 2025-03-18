@@ -16,7 +16,7 @@ import { CartStore } from './cart.store';
 const appRoutes: Routes = [
   {path: '', component: MainComponent},
   {path: 'category/:category', component: CategoryComponent},
-  {path: 'chckout', component: ConfirmCheckoutComponent},
+  {path: 'checkout', component: ConfirmCheckoutComponent},
   {path: '**', redirectTo: '/', pathMatch: 'full'}
 ]
 

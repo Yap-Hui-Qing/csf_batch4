@@ -18,6 +18,12 @@ export class OrderFormComponent implements OnInit {
   @Input({ required: true })
   productId!: string
 
+  @Input({required: true})
+  productName!: string
+
+  @Input({required: true})
+  discountPrice!: number
+
   form!: FormGroup
 
   ngOnInit(): void {
@@ -28,13 +34,13 @@ export class OrderFormComponent implements OnInit {
     const lineItem: LineItem = {
       prodId: this.productId,
       quantity: this.form.value['quantity'],
-      name: '',
-      price: 0
+      name: this.productName,
+      price: this.discountPrice
     }
     this.cart.addProduct(lineItem)
-    // this.cart.getItems.subscribe(
-    //   (items) => console.info(items)
-    // )
+    this.cart.getItems.subscribe(
+      (items) => console.info(items)
+    )
     this.form = this.createForm()
   }
 

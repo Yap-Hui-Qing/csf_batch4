@@ -1,7 +1,7 @@
 import {Injectable, inject} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Order, Product} from "./models";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {firstValueFrom, Observable} from "rxjs";
+import {Order, PostOrder, Product} from "./models";
 
 @Injectable()
 export class ProductService {
@@ -28,5 +28,9 @@ export class ProductService {
   // not be marked
   checkout(order: Order) {
     // TODO Task 3
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+    return firstValueFrom(this.http.post<PostOrder>('/api/orders', order, {headers}))
   }
 }
