@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, inject } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LineItem} from '../models';
+import { CartStore } from '../cart.store';
 
 @Component({
   selector: 'app-order-form',
@@ -12,6 +13,7 @@ export class OrderFormComponent implements OnInit {
   // NOTE: you are free to modify this component
 
   private fb = inject(FormBuilder)
+  private cart = inject(CartStore)
 
   @Input({ required: true })
   productId!: string
@@ -29,7 +31,10 @@ export class OrderFormComponent implements OnInit {
       name: '',
       price: 0
     }
-
+    this.cart.addProduct(lineItem)
+    // this.cart.getItems.subscribe(
+    //   (items) => console.info(items)
+    // )
     this.form = this.createForm()
   }
 

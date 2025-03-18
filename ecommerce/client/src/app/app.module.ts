@@ -9,6 +9,7 @@ import { CategoryComponent } from './components/category.component';
 import { OrderFormComponent } from './components/order-form.component';
 import {ConfirmCheckoutComponent} from './components/confirm-checkout.component';
 import { NgModule } from '@angular/core';
+import { CartStore } from './cart.store';
 
 // NOTE: you are free to modify this file
 
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     BrowserModule, HttpClientModule, ReactiveFormsModule,
     RouterModule.forRoot(appRoutes, { useHash: true })
   ],
-  providers: [ ProductService ],
+  providers: [ ProductService, CartStore ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
