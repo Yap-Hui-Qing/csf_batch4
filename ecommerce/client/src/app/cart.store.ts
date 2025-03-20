@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
 import { Cart, LineItem } from "./models";
+import { createMayBeForwardRefExpression } from "@angular/compiler";
 
 const INIT: Cart = {
        lineItems: [] 
@@ -35,6 +36,15 @@ export class CartStore extends ComponentStore<Cart> {
 
     readonly getItems = this.select<LineItem[]>(
         (cart: Cart) => cart.lineItems
+    )
+
+    readonly clearCart = this.updater(
+        (cart: Cart) => {
+            return {
+                ...cart,
+                lineItems: []
+            }
+        }
     )
 
 }

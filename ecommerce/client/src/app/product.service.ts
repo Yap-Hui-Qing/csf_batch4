@@ -1,7 +1,7 @@
 import {Injectable, inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom, Observable} from "rxjs";
-import {Order, PostOrder, Product} from "./models";
+import {Order, Product} from "./models";
 
 @Injectable()
 export class ProductService {
@@ -31,6 +31,6 @@ export class ProductService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-    return firstValueFrom(this.http.post<PostOrder>('/api/orders', order, {headers}))
+    return firstValueFrom(this.http.post<any>('/api/order', order, {headers}))
   }
 }
